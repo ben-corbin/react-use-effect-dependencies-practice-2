@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function StarshipsListItem(props) {
   const { starship } = props;
@@ -7,7 +7,20 @@ function StarshipsListItem(props) {
 
   console.log({ starship });
 
-  return <li>{starship.name} - First Pilot {firstPilot}</li>;
+  useEffect(() => {
+    if (starship.pilots.length === 0) {
+      setFirstPilot('no pilots')
+    } else {
+
+      fetch(starship.pilots[0])
+        .then(response => response.json())
+        .then(pilot => {
+          setFirstPilot(pilot.name)
+        })
+    }
+  }, [starship])
+
+  return <li>{starship.name} - First Pilot - {firstPilot}</li>;
 }
 
 export default StarshipsListItem;
