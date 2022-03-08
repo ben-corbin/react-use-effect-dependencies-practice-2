@@ -11,7 +11,7 @@ function PlanetsListItem(props) {
     fetch(planet.films[0])
     .then(res => res.json())
     .then(films => {setFirstFilm(films.title)})
-  }, [planet])
+  }, [firstFilm]);
 
   return <li>{planet.name} - First Film {firstFilm}</li>;
 }
