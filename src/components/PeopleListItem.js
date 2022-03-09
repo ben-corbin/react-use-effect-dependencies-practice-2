@@ -11,7 +11,7 @@ function PeopleListItem(props) {
     fetch(person.homeworld)
     .then((res) => res.json())
     .then((data) => setHomeworld(data.name));
-}, [homeworld]);
+}, [person]);
 
   return (
     <ul>
